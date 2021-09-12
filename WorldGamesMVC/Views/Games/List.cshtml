@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WorldGamesMVC.Models.Game>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        font-size: 1.2rem;
+        font-family: Arial;
+    }
+
+    h1 {
+        text-align: justify;
+        margin-top: 100px;
+    }
+
+    img {
+        margin: 0 auto;
+        display: block;
+        max-width: 100%;
+    }
+
+    .flex {
+        width: 300px;
+        height: 300px;
+        display: inline-block;
+        margin: auto auto;
+    }
+
+        .flex > div {
+            padding: 20px;
+            background-color: #D7E9F7;
+            margin: 0 auto;
+        }
+
+        
+
+</style>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+@foreach (var item in Model)
+{
+
+<section class="flex">
+    <div>
+        <h2 style="text-align:center;">@item.Titulo</h2>
+        <img src="@item.Imagem" style="width: 250px; height: 250px;" />
+        <p style="width:auto; background-color:#fff; padding:10px;">@item.DescricaoCurta</p>
+        <p style="color:red;"><strong>R$@item.Preco</strong></p>
+    </div>
+
+</section>
+
+
+}
+
