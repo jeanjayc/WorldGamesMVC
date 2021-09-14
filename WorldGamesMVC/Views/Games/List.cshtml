@@ -25,8 +25,8 @@
     }
 
     .flex {
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         display: inline-block;
         margin: auto auto;
     }
@@ -52,11 +52,11 @@
 
 <section class="flex">
     <div>
-        <h2 style="text-align:center;">@item.Titulo</h2>
-        <img src="@item.Imagem" style="width: 250px; height: 250px;" />
-        <p style="width:auto; background-color:#fff; padding:10px;">@item.DescricaoCurta</p>
-        <p style="color:red;"><strong>R$@item.Preco</strong></p>
-    </div>
+        <h4 style="text-align:center;"><a asp-controller="Games" asp-action="Details" asp-route-gameId="@item.GameId">@item.Titulo</a></h4>
+            <img src="@item.Imagem" style="width: 250px; height: 250px;" />
+            <p style="width:auto; background-color:#fff; padding:10px;">@item.DescricaoCurta</p>
+            <p style="color:red;"><strong>R$@item.Preco</strong></p>
+</div>
 
 </section>
 

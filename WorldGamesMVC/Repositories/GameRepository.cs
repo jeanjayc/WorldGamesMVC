@@ -31,6 +31,7 @@ namespace WorldGamesMVC.Repositories
                                 join gen in _context.Generos on game.GeneroId equals gen.GeneroId
                                 select new
                                 {
+                                    game.GameId,
                                     game.Titulo,
                                     game.Imagem,
                                     game.Genero,
@@ -46,6 +47,7 @@ namespace WorldGamesMVC.Repositories
             foreach(var item in result)
             {
                 var game = new Game();
+                game.GameId = item.GameId;
                 game.Titulo = item.Titulo;
                 game.Imagem = item.Imagem;
                 game.Genero = item.Genero;
@@ -69,9 +71,10 @@ namespace WorldGamesMVC.Repositories
             //}).ToListAsync();
         }
 
-        public Task<Game> GetById(int id)
+        public async Task<Game> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Games.FirstOrDefaultAsync(g => g.GameId == id);
+            return result;
         }
 
         public Task Remove(Game entity)

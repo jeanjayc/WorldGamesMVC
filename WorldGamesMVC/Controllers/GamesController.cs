@@ -18,6 +18,7 @@ namespace WorldGamesMVC.Controllers
             _generoRepository = generoRepository;
         }
 
+        [Route("Games/List")]
         public async Task<IActionResult> List()
         {
             //ViewBag.Game = "Games";
@@ -27,6 +28,16 @@ namespace WorldGamesMVC.Controllers
 
             return View(games);
 
+        }
+
+        public async Task<IActionResult> Details(int gameId)
+        {
+            var game = await _gameRepository.GetById(gameId);
+            if (game == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            return View(game);
         }
     }
 }

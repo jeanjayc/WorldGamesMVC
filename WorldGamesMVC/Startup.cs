@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorldGamesMVC.Context;
+using WorldGamesMVC.Models;
 using WorldGamesMVC.Repositories;
 using WorldGamesMVC.Repositories.Interfaces;
 
@@ -31,6 +33,11 @@ namespace WorldGamesMVC
 
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IGeneroRepository, GeneroRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +55,7 @@ namespace WorldGamesMVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
