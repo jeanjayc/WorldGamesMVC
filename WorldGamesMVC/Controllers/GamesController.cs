@@ -18,18 +18,23 @@ namespace WorldGamesMVC.Controllers
             _generoRepository = generoRepository;
         }
 
-        [Route("Games/List")]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List(string searchString)
         {
             //ViewBag.Game = "Games";
             //ViewData["Genero"] = "Genero";
        
             var games = await _gameRepository.GetAll();
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(g => g.Titulo.ToLower().Contains(searchString.ToLower()));
+            }
+
             return View(games);
 
         }
 
+     
         public async Task<IActionResult> Details(int gameId)
         {
             var game = await _gameRepository.GetById(gameId);

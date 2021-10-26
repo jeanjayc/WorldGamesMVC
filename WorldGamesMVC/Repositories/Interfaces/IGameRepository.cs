@@ -8,5 +8,6 @@ namespace WorldGamesMVC.Repositories.Interfaces
 {
     public interface IGameRepository : IBaseRepository<Game>
     {
+
     }
 }

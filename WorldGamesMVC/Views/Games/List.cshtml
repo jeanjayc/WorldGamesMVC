@@ -36,9 +36,6 @@
             background-color: #D7E9F7;
             margin: 0 auto;
         }
-
-        
-
 </style>
 
 
@@ -46,19 +43,25 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<form asp-controller="Games" asp-action="List">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Buscar" />
+    </p>
+</form>
 
 @foreach (var item in Model)
 {
 
-<section class="flex">
-    <div>
-        <h4 style="text-align:center;"><a asp-controller="Games" asp-action="Details" asp-route-gameId="@item.GameId">@item.Titulo</a></h4>
+    <section class="flex">
+        <div>
+            <h4 style="text-align:center;"><a asp-controller="Games" asp-action="Details" asp-route-gameId="@item.GameId">@item.Titulo</a></h4>
             <img src="@item.Imagem" style="width: 250px; height: 250px;" />
             <p style="width:auto; background-color:#fff; padding:10px;">@item.DescricaoCurta</p>
             <p style="color:red;"><strong>R$@item.Preco</strong></p>
-</div>
+        </div>
 
-</section>
+    </section>
 
 
 }

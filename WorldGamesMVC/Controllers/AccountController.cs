@@ -67,10 +67,15 @@ namespace WorldGamesMVC.Controllers
             {
                 var user = new IdentityUser() { UserName = registerVm.UserName };
                 var result = await _userManager.CreateAsync(user, registerVm.Password);
-                if (result.Succeeded)
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "Usuário ou Senha inválidos ou não localizados");
+                }
+                else
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                
             }
             return View(registerVm);
         }

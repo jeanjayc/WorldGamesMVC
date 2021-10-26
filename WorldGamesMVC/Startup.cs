@@ -67,6 +67,10 @@ namespace WorldGamesMVC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "List",
+                    pattern: "{controller=Games}/{action=List}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
